@@ -1,0 +1,48 @@
+﻿@model CoffeeDto
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Coffee</h4>
+    <hr />
+    <dl class="row">
+        @*<dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FileId)
+        </dt>*@
+        @*<dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FileId)
+        </dd>*@
+        <dt class = "col-sm-2">
+            Nome
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            Preço
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Value, new { @class = "money" })
+        </dd>
+        <dt class = "col-sm-2">
+            Descrição
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            Energia
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Energy)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Voltar</a>
+</div>

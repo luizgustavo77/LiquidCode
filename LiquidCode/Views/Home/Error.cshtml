@@ -1,0 +1,22 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">Um erro aconteceu na sua requisição.</h2>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+<h3>Mensagem do DEV</h3>
+<p>
+    Não sei oque você faz aqui mas, <strong>VOCÊ NÃO DEVERIA ESTAR AQUI!</strong>.
+</p>
+<p>
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Clique aqui</a> para retornar para a pagina inicial e por favor, para de quebrar minha aplicação.
+</p>

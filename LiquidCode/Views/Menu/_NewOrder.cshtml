@@ -1,0 +1,59 @@
+﻿@model CoinsDto
+
+@{
+    Layout = "";
+}
+
+<small>Por favor insira a quantidade de moedas</small>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Order" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Value" class="control-label">Preço R$ @Model.Value</label>
+                <input type="hidden" asp-for="Value" />
+                <br />
+                <span id="ValueValid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="One" class="control-label"></label>
+                <input asp-for="One" class="form-control" />
+                <span id="OneValid" asp-validation-for="One" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Five" class="control-label"></label>
+                <input asp-for="Five" class="form-control" />
+                <span id="FiveValid" asp-validation-for="Five" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ten" class="control-label"></label>
+                <input asp-for="Ten" class="form-control" />
+                <span id="TenValid" asp-validation-for="Ten" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwentyFive" class="control-label"></label>
+                <input asp-for="TwentyFive" class="form-control" />
+                <span id="TwentyFiveValid" asp-validation-for="TwentyFive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fifty" class="control-label"></label>
+                <input asp-for="Fifty" class="form-control" />
+                <span id="FiftyValid" asp-validation-for="Fifty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OneHundred" class="control-label"></label>
+                <input asp-for="OneHundred" class="form-control" />
+                <span id="OneHundredValid" asp-validation-for="OneHundred" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button value="Pedir" class="btn btn-lg btn-primary btn-block" onclick="cardapio().validSubmit(); return false;"> Pedir </button>
+                <button id="btnSubmit" type="submit" value="Pedir" class="btn btn-lg btn-primary btn-block" style="display: none;"> </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

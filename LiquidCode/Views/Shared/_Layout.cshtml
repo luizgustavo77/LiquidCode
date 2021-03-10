@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LiquidCode</title>
+
+    @*JavaScript*@
+    <script src="~/lib/jquery/dist/jquery-3.5.1.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.mask.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.maskMoney.js"></script>
+    <script src="~/lib/jquery/dist/jquery-ui-1.12.1.js"></script>
+    <script src="~/lib/jquery-data-tables/js/jquery.dataTables.js"></script>
+    <script src="~/lib/jquery-data-tables/js/dataTables.bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        var base_path = '@Url.Content("~")';
+    </script>
+    @RenderSection("Scripts", required: false)
+
+    @*CSS*@
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/jquery-data-tables/css/dataTables.bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
+</head>
+<body>
+    <div id="modal" class="modal">
+        <div style="text-align: center;">
+            <h2>Carregando</h2>
+        </div>
+        <div class="loader">
+            <img src="~/img/loading.gif" alt="">
+        </div>
+    </div>
+    <header>
+        <nav class="navbar navbar-dark bg-dark navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LiquidCode ☕</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">Sobre o DEV</a>
+                        </li>
+                        @if (LiquidCode.Helpers.Session.GetObject<UserDto>("usuario") != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Menu" asp-action="Index">Cardapio</a>
+                            </li>
+
+                            if (LiquidCode.Helpers.Session.GetObject<UserDto>("usuario").Perfil == 2)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Storage" asp-action="Index">Storage</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Core" asp-action="Index">Usuarios</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse order-3 dual-collapse2">
+                    <ul class="navbar-nav ml-auto">
+                        @if (LiquidCode.Helpers.Session.GetObject<UserDto>("usuario") != null)
+                        {
+                            string name = LiquidCode.Helpers.Session.GetObject<UserDto>("usuario").Name;
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index"> Ola @name </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Core" asp-action="Logout"> Sair </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Core" asp-action="Login">Login</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3" id="renderbody">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - LiquidCode - <a href="https://luizgustavo77.github.io/CV/">Luiz Gustavo</a> <a href="https://github.com/luizgustavo77/"><i class="bi bi-github"></i></a>
+            <a href="https://www.linkedin.com/in/luizfts/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+    </footer>
+</body>
+</html>
